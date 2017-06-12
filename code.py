@@ -49,15 +49,14 @@ class SomeTests(unittest.TestCase):
         self.assertEqual(self.b.count, 17)
 
     def test_that_update_is_called(self):
-        mm = MagicMock()
-        self.b.update = mm
+        update = MagicMock()
+        self.b.update = update
 
         self.b.do_stuff(4711)
 
-        mm.assert_called_with(4711)
-        mm.assert_called_with(4711)
+        update.assert_called_with(4711)
+        update.assert_called_with(4711)
         self.b.update.assert_called_with(4711)
         # Det går bra att anropa samma assert flera gånger.
-        # PyCharm förstår att mm har metoden assert_called_with,
+        # PyCharm förstår att update har metoden assert_called_with,
         # men inte att self.b.update har det. Därför tricket att self.b.update = mm.
-        
